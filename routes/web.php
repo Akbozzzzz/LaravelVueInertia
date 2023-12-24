@@ -35,6 +35,9 @@ Route::get('/student',[StudentController::class,'index'])->name('student');
 Route::get('create/student/record',[StudentController::class,'create'])->name('student.create');
 Route::post('create/student/record',[StudentController::class,'store'])->name('student.store');
 Route::delete('/student/delete/{id}',[StudentController::class,'destroy'])->name('student.destroy');
+Route::get('/student/edit/{id}',[StudentController::class,'edit'])->name('student.edit');
+Route::put('/student/update/{id}', [StudentController::class, 'update'])->name('student.update');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -15,10 +15,13 @@ defineProps({
     students: Array,
 });
 
-
 const handleDelete = (studentId) => {
     router.delete(`/student/delete/${studentId}`);
     toastr.success("Delete Record successfully!");
+};
+
+const handelEdit = (studentId) => {
+    router.get(`/student/edit/${studentId}`);
 };
 </script>
 
@@ -38,10 +41,10 @@ const handleDelete = (studentId) => {
                 <td>Delete</td>
             </tr>
             <tr v-for="student in students">
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
                 <td>{{ student.email }}</td>
-                <td>{{ student.email }}</td>
-                <td>{{ student.email }}</td>
-                <td><a href="">Edit</a></td>
+                <td @click="handelEdit(student.id)">Edit</td>
                 <td @click="handleDelete(student.id)">Delete</td>
             </tr>
         </table>

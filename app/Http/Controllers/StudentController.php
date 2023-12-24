@@ -42,4 +42,19 @@ class StudentController extends Controller
     {
         Student::where('id',$id)->delete();
     }
+
+    public function edit($id)
+    {
+        $studenteditRecord = Student::where('id',$id)->first();
+        return Inertia::render('Student/edit',['studenteditRecord'=>$studenteditRecord]);
+    }
+
+    public function update(Request $request ,$id)
+    {
+        Student::where('id',$request->id)->update([
+           'first_name'=>$request->first_name,
+          'last_name'=>$request->last_name,
+        ]);
+        return to_route('student');
+    }
 }
